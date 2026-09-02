@@ -1,4 +1,4 @@
-# Restaurantes ASP.NET
+﻿# Restaurantes ASP.NET
 
 Plantilla de clase para crear paso a paso una aplicación de gestión de restaurantes con
 ASP.NET Core MVC. Incluye la base común de usuarios, login, perfiles, SQLite, Entity
@@ -155,3 +155,5 @@ En VS Code, selecciona el perfil `http` y pulsa F5 para depurar. Las tareas
 `Restaurantes: compilar` y `Restaurantes: ejecutar tests` están disponibles en
 **Terminal → Run Task**. En Windows, Visual Studio 2026 también abre
 `RestaurantesAspNet.sln`; consulta [la guía de IDEs](docs/IDE-SETUP.md).
+
+🐦‍⬛
