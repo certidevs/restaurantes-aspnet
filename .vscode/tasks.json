@@ -1,0 +1,24 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Restaurantes: compilar",
+      "type": "process",
+      "command": "dotnet",
+      "args": ["build", "RestaurantesAspNet.sln"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$msCompile"]
+    },
+    {
+      "label": "Restaurantes: ejecutar tests",
+      "type": "process",
+      "command": "dotnet",
+      "args": ["test", "RestaurantesAspNet.sln"],
+      "group": "test",
+      "problemMatcher": ["$msCompile"]
+    }
+  ]
+}

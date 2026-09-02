@@ -5,7 +5,7 @@ using RestaurantesAspNet.Models;
 namespace RestaurantesAspNet.Data;
 
 /// <summary>
-/// Contexto de EF Core, equivalente a un EntityManager de JPA más la configuración ORM.
+/// Contexto de EF Core: configura SQLite y reúne las tablas de la aplicación.
 /// Las entidades de restaurante se añadirán aquí durante las clases.
 /// </summary>
 public sealed class ApplicationDbContext : IdentityDbContext<ApplicationUser>

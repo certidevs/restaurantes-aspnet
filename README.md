@@ -1,79 +1,157 @@
 # Restaurantes ASP.NET
 
-Plantilla de clase para construir paso a paso la versión ASP.NET Core MVC de
-[restaurantes-java](https://github.com/alansastre/restaurantes-java). Este repositorio
-es independiente de `biblioteca-aspnet`: contiene solo la base transversal que todos
-los proyectos de grupo necesitarán.
+Plantilla de clase para crear paso a paso una aplicación de gestión de restaurantes con
+ASP.NET Core MVC. Incluye la base común de usuarios, login, perfiles, SQLite, Entity
+Framework, Razor, Bootstrap, Docker y CI.
 
-## Ya incluido
+No incluye todavía `Restaurant`, `Dish`, `Review`, `Order` ni sus pantallas. Es
+intencional: esas entidades se construirán en clase desde cero.
 
-- .NET 10 LTS, C# 14 y ASP.NET Core MVC con Razor.
-- Entity Framework Core 10 + SQLite en `App_Data/restaurantes.db`.
-- ASP.NET Core Identity: registro, login, logout, cookies, bloqueo y roles.
-- `ApplicationUser`, roles `Admin` y `User`, perfil, cambio de contraseña y avatar.
-- Panel CRUD de administración de usuarios con las reglas de no borrar el último admin.
-- Bootstrap 5.3 local y cambio claro/oscuro; el CSS propio se limita al avatar.
-- Datos demo: `admin` / `Admin123!` y `user` / `User123!`.
-- Migración inicial, Dockerfile y GitHub Actions para restaurar, compilar y probar.
+## Requisitos
 
-No hay todavía `Restaurant`, `Dish`, `Review`, `Order`, controladores ni vistas del
-dominio. Es intencional: esas piezas se crearán en clase, igual que en el proyecto
-Java, para entender cada asociación y cada slice vertical.
+- SDK de .NET 10. `global.json` selecciona el SDK 10.0.400 o una actualización
+  compatible.
+- Visual Studio Code y C# Dev Kit. Es el IDE estándar del curso en Windows, macOS y
+  Linux.
+- Git. Docker es opcional y solo se usa al explicar despliegue.
 
-## Ejecutar
+No instales ASP.NET, C#, SQLite ni Entity Framework por separado: los aporta el SDK o
+se restauran como dependencias del proyecto.
 
-Desde esta carpeta:
+## Instalación inicial
+
+Instala .NET 10 SDK, Visual Studio Code y C# Dev Kit una sola vez en el ordenador.
+
+### Windows (PowerShell)
+
+```powershell
+winget install --id Microsoft.DotNet.SDK.10 --exact
+winget install --id Microsoft.VisualStudioCode --exact
+winget install --id Git.Git --exact
+```
+
+Cierra y abre una terminal nueva; después instala la extensión:
+
+```powershell
+code --install-extension ms-dotnettools.csdevkit
+```
+
+### macOS (Terminal, con Homebrew)
 
 ```bash
-dotnet run --project RestaurantesAspNet.csproj
+brew install dotnet
+brew install --cask visual-studio-code
+brew install git
+code --install-extension ms-dotnettools.csdevkit
 ```
 
-Abrir la URL que muestra la consola (normalmente `http://localhost:5251`). La primera
-ejecución crea SQLite, aplica la migración de Identity y genera los usuarios demo.
+Si no utilizas Homebrew, instala el SDK de .NET 10 con el instalador oficial de
+[macOS](https://dotnet.microsoft.com/download/dotnet/10.0) y añade C# Dev Kit desde
+el panel Extensions de VS Code.
 
-## Arquitectura de la plantilla
-
-```text
-Navegador → Controller → servicio concreto solo si aporta una regla → DbContext → SQLite
-                   ↓
-              ViewModel → Razor + Bootstrap
-```
-
-`ApplicationDbContext` es el repositorio y unidad de trabajo que aporta EF Core. Por
-eso no hay `Repositories/` ni interfaces `I...Service`: para este curso solo añadirían
-boilerplate. `UserService` se conserva porque agrupa la lógica reutilizable de
-Identity, perfiles, roles y avatares. Las APIs de Identity usan `async` porque así las
-ofrece el framework; el resto se añadirá con el código más directo posible.
-
-## Cómo continuará en clase
-
-1. Leer `ApplicationUser`, `ApplicationDbContext`, `Program.cs` y el flujo de login.
-2. Crear la primera entidad de restaurante y su `DbSet` en el contexto.
-3. Añadir la migración con `dotnet ef migrations add AddRestaurants`.
-4. Desarrollar el slice vertical: ViewModel, servicio si aporta una regla, controlador,
-   vistas Razor y datos demo.
-5. Repetir con platos y luego añadir las asociaciones que correspondan.
-6. Conectar cada entidad con `ApplicationUser` cuando tenga propietario, reserva,
-   favorito o autor.
-
-## CI y Docker
-
-El workflow [build-and-test.yml](.github/workflows/build-and-test.yml) ejecuta en cada
-`push` a `main` y *pull request*:
+### Ubuntu 26.04 (Terminal)
 
 ```bash
-dotnet restore RestaurantesAspNet.slnx
-dotnet build RestaurantesAspNet.slnx --configuration Release --no-restore
-dotnet test RestaurantesAspNet.slnx --configuration Release --no-build
+sudo apt-get update
+sudo apt-get install -y dotnet-sdk-10.0 git
+sudo snap install code --classic
+code --install-extension ms-dotnettools.csdevkit
 ```
 
-El test xUnit actual es deliberadamente mínimo y cubre una regla de la subida de
-avatares. Sirve para que el alumnado compruebe la configuración antes de introducir
-tests de base de datos o controladores.
+Para otra distribución Linux, sigue el instalador oficial de
+[.NET para Linux](https://learn.microsoft.com/dotnet/core/install/linux) y, una vez
+instalado VS Code, ejecuta el último comando.
 
-Para empaquetar la plantilla:
+Comprueba la instalación desde esta carpeta:
+
+```bash
+dotnet --version
+```
+
+Debe mostrar `10.0.400` o una actualización compatible de .NET 10.
+Si el comando `code` no se reconoce, abre VS Code e instala C# Dev Kit desde
+**Extensions**.
+
+## Primer arranque
+
+Abre la carpeta `restaurantes-aspnet` en VS Code, no la carpeta padre. La extensión
+carga automáticamente `RestaurantesAspNet.sln`.
+
+```bash
+code .
+dotnet restore RestaurantesAspNet.sln
+dotnet tool restore
+dotnet run --project RestaurantesAspNet.csproj --launch-profile http
+```
+
+Abre `http://localhost:5107`. El primer arranque crea `App_Data/restaurantes.db`,
+aplica la migración de Identity y añade los usuarios demo:
+
+- `admin` / `Admin123!`
+- `user` / `User123!`
+
+## Comandos de trabajo diario
+
+Todos se ejecutan desde la raíz de este repositorio.
+
+```bash
+# Restaurar dependencias NuGet y herramientas locales tras clonar o actualizar
+dotnet restore RestaurantesAspNet.sln
+dotnet tool restore
+
+# Ejecutar la aplicación
+dotnet run --project RestaurantesAspNet.csproj --launch-profile http
+
+# Ejecutar con recarga al guardar archivos
+dotnet watch --project RestaurantesAspNet.csproj run --launch-profile http
+
+# Compilar y ejecutar los tests
+dotnet build RestaurantesAspNet.sln
+dotnet test RestaurantesAspNet.sln
+```
+
+### Entity Framework y SQLite
+
+`dotnet-ef` está fijado en `.config/dotnet-tools.json`, por lo que `dotnet tool
+restore` lo deja disponible sin instalar nada de forma global.
+
+```bash
+# Después de cambiar una entidad: crear y aplicar una migración
+dotnet ef migrations add NombreDescriptivo
+dotnet ef database update
+
+# Corregir la última migración solo antes de aplicarla a la base de datos
+dotnet ef migrations remove
+```
+
+Las migraciones se aplican también al arrancar la aplicación en desarrollo. El comando
+`database update` se incluye para aprender el flujo explícito que se usará en clase.
+
+### Git, CI y Docker
+
+```bash
+git status
+git add .
+git commit -m "feat: describe el cambio"
+git pull --rebase
+git push
+```
+
+[GitHub Actions](.github/workflows/build-and-test.yml) ejecuta restauración,
+compilación Release y tests en cada `push` y *pull request*.
+
+Docker es opcional:
 
 ```bash
 docker build -t restaurantes-aspnet:local .
 docker run --rm -p 10000:10000 restaurantes-aspnet:local
 ```
+
+El contenedor queda disponible en `http://localhost:10000`.
+
+## IDEs
+
+En VS Code, selecciona el perfil `http` y pulsa F5 para depurar. Las tareas
+`Restaurantes: compilar` y `Restaurantes: ejecutar tests` están disponibles en
+**Terminal → Run Task**. En Windows, Visual Studio 2026 también abre
+`RestaurantesAspNet.sln`; consulta [la guía de IDEs](docs/IDE-SETUP.md).

@@ -28,10 +28,10 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: Restore dependencies
-        run: dotnet restore RestaurantesAspNet.slnx
+        run: dotnet restore RestaurantesAspNet.sln
 
       - name: Build in Release
-        run: dotnet build RestaurantesAspNet.slnx --configuration Release --no-restore
+        run: dotnet build RestaurantesAspNet.sln --configuration Release --no-restore
 
       - name: Run unit tests
-        run: dotnet test RestaurantesAspNet.slnx --configuration Release --no-build --verbosity normal
+        run: dotnet test RestaurantesAspNet.sln --configuration Release --no-build --verbosity normal

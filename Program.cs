@@ -15,7 +15,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(connectionString));
 
-// Identity es la alternativa de ASP.NET Core a Spring Security.
+// Identity gestiona usuarios, cookies de sesión, contraseñas y roles.
 builder.Services
     .AddIdentity<ApplicationUser, IdentityRole>(options =>
     {
