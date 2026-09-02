@@ -4,6 +4,25 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>RestaurantesAspNet</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <!-- EF Core es el equivalente .NET de JPA/Hibernate. SQLite sustituye a H2. -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+
+    <!-- Identity proporciona login, cookies, contraseñas y roles. -->
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.11" />
+  </ItemGroup>
+
+  <!-- El SDK incluye todos los .cs bajo la raíz; los tests se compilan solo desde
+       tests/RestaurantesAspNet.Tests. -->
+  <ItemGroup>
+    <Compile Remove="tests/**/*.cs" />
+  </ItemGroup>
 
 </Project>

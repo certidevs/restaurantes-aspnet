@@ -1,10 +1,37 @@
-﻿@{
-    ViewData["Title"] = "Restaurantes";
+@{
+    ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center py-5">
-    <span class="badge text-bg-primary mb-3">Proyecto para construir en clase</span>
-    <h1 class="display-4 fw-bold">Restaurantes ASP.NET</h1>
-    <p class="lead text-secondary">Punto de partida limpio para desarrollar paso a paso una aplicación MVC de restaurantes.</p>
-    <p class="text-secondary">Consulta el <a href="https://github.com/alansastre/restaurantes-java">proyecto Java equivalente</a> y sigue la guía del README.</p>
-</div>
+<section class="py-4 py-lg-5">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-8">
+            <p class="text-primary text-uppercase fw-semibold small mb-2">Plantilla común</p>
+            <h1 class="display-5 fw-bold">Restaurantes ASP.NET</h1>
+            <p class="lead text-secondary">La infraestructura transversal ya está preparada. En clase añadiremos las entidades, asociaciones, servicios, controladores y vistas del dominio de restaurantes.</p>
+            <div class="d-flex flex-wrap gap-2">
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <a class="btn btn-primary" asp-controller="Profile" asp-action="Index">Ver mi perfil</a>
+                }
+                else
+                {
+                    <a class="btn btn-primary" asp-controller="Account" asp-action="Register">Crear cuenta</a>
+                    <a class="btn btn-outline-primary" asp-controller="Account" asp-action="Login">Iniciar sesión</a>
+                }
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="h5">Incluido desde el primer día</h2>
+                    <ul class="mb-0 ps-3">
+                        <li>Identity, roles y login por cookie</li>
+                        <li>SQLite y Entity Framework Core</li>
+                        <li>Perfil, avatar y cambio de contraseña</li>
+                        <li>Administración de usuarios</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

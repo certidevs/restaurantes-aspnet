@@ -1,24 +1,20 @@
+using RestaurantesAspNet.Models;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using RestaurantesAspNet.Models;
 
 namespace RestaurantesAspNet.Controllers;
 
-public class HomeController : Controller
+/// <summary>Página de inicio de la plantilla común, sin entidades de restaurante todavía.</summary>
+public sealed class HomeController : Controller
 {
     public IActionResult Index()
     {
         return View();
     }
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
-
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
+    public IActionResult Error() => View(new ErrorViewModel
     {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
+        RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+    });
 }

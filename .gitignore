@@ -28,10 +28,11 @@ coverage/
 appsettings.Local.json
 secrets.json
 
-# Imágenes subidas localmente
+# Avatares subidos localmente
 wwwroot/uploads/*
-!wwwroot/uploads/
-!wwwroot/uploads/.gitkeep
+!wwwroot/uploads/avatars/
+wwwroot/uploads/avatars/*
+!wwwroot/uploads/avatars/.gitkeep
 
 # Logs and local environment files
 *.log

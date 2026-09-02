@@ -1,6 +1,7 @@
 namespace RestaurantesAspNet.Models;
 
-public class ErrorViewModel
+/// <summary>Datos mínimos que muestra la página de error controlada.</summary>
+public sealed class ErrorViewModel
 {
     public string? RequestId { get; set; }
 
