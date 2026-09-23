@@ -35,7 +35,7 @@ builder.Services
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/account/login";
-    options.AccessDeniedPath = "/account/access-denied";
+    options.AccessDeniedPath = "/account/accessdenied";
     options.Cookie.Name = "RestaurantesAspNet.Auth";
     options.SlidingExpiration = true;
     options.Events.OnValidatePrincipal = async context =>
