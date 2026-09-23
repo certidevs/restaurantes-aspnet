@@ -1,4 +1,4 @@
-﻿# Restaurantes ASP.NET
+# Restaurantes ASP.NET
 
 Plantilla de clase para crear paso a paso una aplicación de gestión de restaurantes con
 ASP.NET Core MVC. Incluye la base común de usuarios, login, perfiles, SQLite, Entity
@@ -9,8 +9,7 @@ intencional: esas entidades se construirán en clase desde cero.
 
 ## Requisitos
 
-- SDK de .NET 10. `global.json` selecciona el SDK 10.0.400 o una actualización
-  compatible.
+- SDK de .NET 10. `global.json` acepta cualquier SDK de la versión 10.0.
 - Visual Studio Code y C# Dev Kit. Es el IDE estándar del curso en Windows, macOS y
   Linux.
 - Git. Docker es opcional y solo se usa al explicar despliegue.
@@ -68,7 +67,7 @@ Comprueba la instalación desde esta carpeta:
 dotnet --version
 ```
 
-Debe mostrar `10.0.400` o una actualización compatible de .NET 10.
+Debe mostrar una versión que empiece por `10.0`.
 Si el comando `code` no se reconoce, abre VS Code e instala C# Dev Kit desde
 **Extensions**.
 
@@ -155,5 +154,3 @@ En VS Code, selecciona el perfil `http` y pulsa F5 para depurar. Las tareas
 `Restaurantes: compilar` y `Restaurantes: ejecutar tests` están disponibles en
 **Terminal → Run Task**. En Windows, Visual Studio 2026 también abre
 `RestaurantesAspNet.sln`; consulta [la guía de IDEs](docs/IDE-SETUP.md).
-
-🐦‍⬛
