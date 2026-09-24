@@ -16,6 +16,9 @@ public sealed class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
     }
 
+    // tabla restaurantes
+    public DbSet<Restaurant> Restaurants => Set<Restaurant>();
+
     /// <summary>Configura las columnas añadidas a la tabla de usuarios de Identity.</summary>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

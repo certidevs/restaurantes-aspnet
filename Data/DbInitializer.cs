@@ -38,6 +38,8 @@ public static class DbInitializer
             displayName: "Usuario de demo",
             password: "User123!",
             role: RoleNames.User);
+
+        // crear restaurantes demo
     }
 
     private static async Task EnsureRoleAsync(RoleManager<IdentityRole> roleManager, string roleName)
