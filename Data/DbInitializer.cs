@@ -40,7 +40,24 @@ public static class DbInitializer
             role: RoleNames.User);
 
         // crear restaurantes demo
+        if (!context.Restaurants.Any())
+        {
+            context.Restaurants.AddRange(
+                new Restaurant { Name = "Casa Pepe", AveragePrice = 22.5, Active = false, NumberEmployees = 0 },
+                new Restaurant { Name = "McDonals", AveragePrice = 15.2, Active = true, NumberEmployees = 5},
+                new Restaurant { Name = "Sushi Zen", AveragePrice = 35, Active = true, NumberEmployees = 12 },
+                new Restaurant { Name = "La Trattoria", AveragePrice = 18, Active = true, NumberEmployees = 6 },
+                new Restaurant { Name = "El Rincón Asturiano", AveragePrice = 28, Active = true, NumberEmployees = 10 },
+                new Restaurant { Name = "100 montaditos", AveragePrice = 28, Active = true, NumberEmployees = 10 },
+                new Restaurant { Name = "Burger Station", AveragePrice = 12.9, Active = false, NumberEmployees = 4 });
+            context.SaveChanges();
+        }
+
+
+        Console.WriteLine($"Restaurantes en la base de datos: {context.Restaurants.Count()}");
     }
+
+    
 
     private static async Task EnsureRoleAsync(RoleManager<IdentityRole> roleManager, string roleName)
     {
