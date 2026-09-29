@@ -14,6 +14,13 @@
 
     <dt class="col-sm-3">Activo</dt>
     <dd class="col-sm-9">@(Model.Active ? "Sí" : "No")</dd>
+
+    <dt class="col-sm-3">Tipo de cocina</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(m => m.FoodType)</dd>
+
+    <dt class="col-sm-3">Fecha de apertura</dt>
+    <dd class="col-sm-9">@Model.StartDate?.ToString("dd/MM/yyyy")</dd>
+
 </dl>
 
 <a class="btn btn-secondary" asp-action="Index">Volver al listado</a>

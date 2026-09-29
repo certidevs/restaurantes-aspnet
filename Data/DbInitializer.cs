@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RestaurantesAspNet.Models;
 
@@ -43,13 +43,11 @@ public static class DbInitializer
         if (!context.Restaurants.Any())
         {
             context.Restaurants.AddRange(
-                new Restaurant { Name = "Casa Pepe", AveragePrice = 22.5, Active = false, NumberEmployees = 0 },
-                new Restaurant { Name = "McDonals", AveragePrice = 15.2, Active = true, NumberEmployees = 5},
-                new Restaurant { Name = "Sushi Zen", AveragePrice = 35, Active = true, NumberEmployees = 12 },
-                new Restaurant { Name = "La Trattoria", AveragePrice = 18, Active = true, NumberEmployees = 6 },
-                new Restaurant { Name = "El Rincón Asturiano", AveragePrice = 28, Active = true, NumberEmployees = 10 },
-                new Restaurant { Name = "100 montaditos", AveragePrice = 28, Active = true, NumberEmployees = 10 },
-                new Restaurant { Name = "Burger Station", AveragePrice = 12.9, Active = false, NumberEmployees = 4 });
+                new Restaurant { Name = "Casa Pepe", AveragePrice = 22.5, Active = true, NumberEmployees = 8, StartDate = new DateOnly(2015, 3, 12), FoodType = FoodType.Spanish },
+                new Restaurant { Name = "Sushi Zen", AveragePrice = 35, Active = true, NumberEmployees = 12, StartDate = new DateOnly(2019, 6, 1), FoodType = FoodType.Japanese },
+                new Restaurant { Name = "La Trattoria", AveragePrice = 18, Active = true, NumberEmployees = 6, StartDate = new DateOnly(2012, 10, 20), FoodType = FoodType.Italian },
+                new Restaurant { Name = "El Rincón Asturiano", AveragePrice = 28, Active = true, NumberEmployees = 10, StartDate = new DateOnly(2008, 5, 15), FoodType = FoodType.Spanish },
+                new Restaurant { Name = "Burger Station", AveragePrice = 12.9, Active = false, NumberEmployees = 4, StartDate = new DateOnly(2021, 1, 8), FoodType = FoodType.American });
             context.SaveChanges();
         }
 
