@@ -1,4 +1,4 @@
-
+﻿
 
 using Microsoft.AspNetCore.Mvc;
 using RestaurantesAspNet.Data;
@@ -27,6 +27,19 @@ public class RestaurantsController : Controller
     {
         var restaurants = baseDeDatos.Restaurants.ToList();
         return View(restaurants);
+    }
+
+    // detalle de un restaurante
+    public IActionResult Details(int id)
+    {
+        var restaurant = baseDeDatos.Restaurants.Find(id);
+        // si no existe el restaurante que buscamos
+        if (restaurant == null)
+        {
+            return NotFound();
+        }
+
+        return View(restaurant);
     }
 
 }
