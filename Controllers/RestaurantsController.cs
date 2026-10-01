@@ -1,6 +1,7 @@
 ﻿
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RestaurantesAspNet.Data;
 using RestaurantesAspNet.Models;
 
@@ -32,7 +33,10 @@ public class RestaurantsController : Controller
     // detalle de un restaurante
     public IActionResult Details(int id)
     {
-        var restaurant = baseDeDatos.Restaurants.Find(id);
+        var restaurant = baseDeDatos.Restaurants
+        .Include(r => r.Employees)
+        .FirstOrDefault(r => r.Id == id);
+
         // si no existe el restaurante que buscamos
         if (restaurant == null)
         {
