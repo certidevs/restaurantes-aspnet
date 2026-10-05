@@ -35,6 +35,7 @@ public class RestaurantsController : Controller
     {
         var restaurant = baseDeDatos.Restaurants
         .Include(r => r.Employees)
+        .Include(r => r.Dishes)
         .FirstOrDefault(r => r.Id == id);
 
         // si no existe el restaurante que buscamos

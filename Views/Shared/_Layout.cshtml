@@ -1,4 +1,4 @@
-@inject UserManager<ApplicationUser> UserManager
+﻿@inject UserManager<ApplicationUser> UserManager
 @inject ImageStorage ImageStorage
 @{
     var currentUser = User.Identity?.IsAuthenticated == true
@@ -42,6 +42,7 @@
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item"><a class='@NavClass("Home")' asp-controller="Home" asp-action="Index">Inicio</a></li>
                         <li class="nav-item"><a class='@NavClass("Restaurants")' asp-controller="Restaurants" asp-action="Index">Restaurantes</a></li>
+                        <li class="nav-item"><a class='@NavClass("Dishes")' asp-controller="Dishes" asp-action="Index">Platos</a></li>
 
                         @if (User.IsInRole(RoleNames.Admin))
                         {
