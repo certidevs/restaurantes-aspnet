@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RestaurantesAspNet.Data;
 
@@ -15,18 +15,12 @@ public class DishesController : Controller
 
     public IActionResult Index()
     {
-        var dishes = context.Dishes
-            .Include(d => d.Restaurant)
-            .OrderBy(d => d.Name)
-            .ToList();
+        var dishes = context.Dishes.Include(d => d.Restaurant).OrderBy(d => d.Name).ToList();
         return View(dishes);
     }
-
     public IActionResult Details(int id)
     {
-        var dish = context.Dishes
-            .Include(d => d.Restaurant)
-            .FirstOrDefault(d => d.Id == id);
+        var dish = context.Dishes.Include(d => d.Restaurant).FirstOrDefault(d => d.Id == id);
         if (dish == null)
         {
             return NotFound();

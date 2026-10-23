@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RestaurantesAspNet.Data;
 using RestaurantesAspNet.Models;
@@ -43,7 +43,7 @@ public class RestaurantsController : Controller
 
         ViewBag.Search = search;
         ViewBag.FoodType = foodType;
-        ViewBag.maxPrice = maxPrice;
+        ViewBag.MaxPrice = maxPrice;
 
         var restaurants = query.OrderBy(r => r.Name).ToList();
         return View(restaurants);

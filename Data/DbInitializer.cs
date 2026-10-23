@@ -39,7 +39,11 @@ public static class DbInitializer
             password: "User123!",
             role: RoleNames.User);
 
+<<<<<<< HEAD
+        // Crear restaurantes demo
+=======
         // crear restaurantes demo
+>>>>>>> 4f93c5c0abe962482a0db383ae7aeeefc660160a
         if (!context.Restaurants.Any())
         {
             context.Restaurants.AddRange(
@@ -106,13 +110,13 @@ public static class DbInitializer
             context.SaveChanges();
         }
 
+
         Console.WriteLine($"Restaurantes en la base de datos: {context.Restaurants.Count()}");
-
         Console.WriteLine($"Empleados en la base de datos: {context.Employees.Count()}");
-
         Console.WriteLine($"Platos en la base de datos: {context.Dishes.Count()}");
-
         Console.WriteLine($"Reseñas en la base de datos: {context.Reviews.Count()}");
+
+
     }
 
     private static async Task EnsureRoleAsync(RoleManager<IdentityRole> roleManager, string roleName)

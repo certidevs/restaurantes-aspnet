@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +8,10 @@ using RestaurantesAspNet.Models;
 using RestaurantesAspNet.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+// Los formularios envían los decimales con punto (22.5): la aplicación usa ese mismo formato en todos los equipos.
+CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
+
 
 // Los formularios envían los decimales con punto (22.5): la aplicación usa ese mismo formato en todos los equipos.
 CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
