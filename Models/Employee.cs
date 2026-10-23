@@ -8,6 +8,6 @@ public class Employee
     public string? Dni { get; set; }
     public int? Age { get; set; }
 
-    public int RestaurantId { get; set; }
-    public Restaurant? Restaurant { get; set; }
+    public int RestaurantId { get; set; } // clave foránea (ES UNA COLUMNA)
+    public Restaurant? Restaurant { get; set; } // navegación (NO ES COLUMNA)
 }

@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using RestaurantesAspNet.Models;
 
@@ -16,12 +16,14 @@ public sealed class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
     }
 
-    // Tabla restaurantes
+    // tabla restaurantes
     public DbSet<Restaurant> Restaurants => Set<Restaurant>();
+    // tabla empleados
     public DbSet<Employee> Employees => Set<Employee>();
+    // tabla platos
     public DbSet<Dish> Dishes => Set<Dish>();
+    // tabla reseñas
     public DbSet<Review> Reviews => Set<Review>();
-
 
     /// <summary>Configura las columnas añadidas a la tabla de usuarios de Identity.</summary>
     protected override void OnModelCreating(ModelBuilder modelBuilder)

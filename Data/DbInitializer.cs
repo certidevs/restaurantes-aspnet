@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RestaurantesAspNet.Models;
 
@@ -39,7 +39,11 @@ public static class DbInitializer
             password: "User123!",
             role: RoleNames.User);
 
+<<<<<<< HEAD
         // Crear restaurantes demo
+=======
+        // crear restaurantes demo
+>>>>>>> 4f93c5c0abe962482a0db383ae7aeeefc660160a
         if (!context.Restaurants.Any())
         {
             context.Restaurants.AddRange(
@@ -51,6 +55,7 @@ public static class DbInitializer
             context.SaveChanges();
         }
 
+        // crear empleados demo
         if (!context.Employees.Any())
         {
             var casaPepe = context.Restaurants.First(r => r.Name == "Casa Pepe");
@@ -66,6 +71,7 @@ public static class DbInitializer
             context.SaveChanges();
         }
 
+        // crear platos demo
         if (!context.Dishes.Any())
         {
             var casaPepe = context.Restaurants.First(r => r.Name == "Casa Pepe");
@@ -89,6 +95,7 @@ public static class DbInitializer
             context.SaveChanges();
         }
 
+        // crear reseñas demo
         if (!context.Reviews.Any())
         {
             var casaPepe = context.Restaurants.First(r => r.Name == "Casa Pepe");
