@@ -1,0 +1,28 @@
+# Glosario
+
+- **Repositorio**: Carpeta que Git vigila y en la que guarda el historial de cambios
+- **Commit**: Versión guardada del proyecto, con un mensaje y un identificador
+- **Hash**: Identificador único de un commit, como `3b8f2a1`
+- **Directorio de trabajo**: Los archivos tal como están ahora en la carpeta
+- **Área de preparación** (*staging area*): Lugar donde marcamos los cambios que entrarán en el siguiente commit
+- **Rama** (*branch*): Línea de trabajo separada que apunta a un commit
+- **HEAD**: Referencia a la rama o al commit en el que estamos
+- **Merge**: Unir los cambios de una rama con otra
+- **Conflicto**: Situación en la que Git no puede unir dos cambios de forma automática
+- **Stash**: Lugar temporal donde guardamos cambios sin commit
+- **Remoto**: Copia del repositorio en otro sitio, normalmente GitHub
+- **Origin**: Nombre habitual del remoto principal
+- **Clone**: Copia completa de un repositorio remoto en nuestro ordenador
+- **Push**: Subir nuestros commits al remoto
+- **Pull**: Traer cambios del remoto y unirlos a nuestra rama
+- **Fetch**: Traer información del remoto sin unir nada
+- **Fork**: Copia de un repositorio dentro de nuestra cuenta de GitHub
+- **Pull request** (PR): Petición para unir los cambios de una rama a otra, con revisión
+- **Issue**: Tarea, error o idea anotada en GitHub
+- **Tag**: Etiqueta que da nombre a un commit concreto, como `v1.0.0`
+- **Release**: Página de GitHub basada en un tag, con notas de cambios
+- **GitHub Actions**: Sistema que ejecuta tareas automáticamente en GitHub
+- **Workflow**: Archivo YAML que describe una tarea de GitHub Actions
+- **.gitignore**: Archivo que indica qué archivos no debe seguir Git
+- **Rebase**: Volver a aplicar nuestros commits encima de otra rama
+- **Reflog**: Registro local de los movimientos de `HEAD` y de las ramas
