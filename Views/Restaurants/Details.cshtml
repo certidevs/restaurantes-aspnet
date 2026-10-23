@@ -1,0 +1,100 @@
+@model Restaurant
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<h1>@Model.Name</h1>
+
+<dl class="row">
+    <dt class="col-sm-3">Tipo de cocina</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(m => m.FoodType)</dd>
+
+    <dt class="col-sm-3">Fecha de apertura</dt>
+    <dd class="col-sm-9">@Model.StartDate?.ToString("dd/MM/yyyy")</dd>
+
+    <dt class="col-sm-3">Precio medio</dt>
+    <dd class="col-sm-9">@Model.AveragePrice €</dd>
+
+    <dt class="col-sm-3">Empleados</dt>
+    <dd class="col-sm-9">@Model.NumberEmployees</dd>
+
+    <dt class="col-sm-3">Activo</dt>
+    <dd class="col-sm-9">@(Model.Active ? "Sí" : "No")</dd>
+</dl>
+<h2 class="h4 mt-4">Carta</h2>
+@if (Model.Dishes.Count == 0)
+{
+    <p class="text-secondary">Este restaurante todavía no tiene platos.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Plato</th>
+                <th>Tipo</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var dish in Model.Dishes.OrderBy(d => d.Price))
+            {
+                <tr>
+                    <td><a asp-controller="Dishes" asp-action="Details" asp-route-id="@dish.Id">@dish.Name</a></td>
+                    <td>@Html.DisplayFor(m => dish.DishType)</td>
+                    <td>@dish.Price €</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<h2 class="h4 mt-4">Reseñas</h2>
+@if (Model.Reviews.Count == 0)
+{
+    <p class="text-secondary">Este restaurante todavía no tiene reseñas.</p>
+}
+else
+{
+    <p>Valoración media: <strong>@Model.Reviews.Average(r => r.Rating).ToString("0.0")</strong> de 5 (@Model.Reviews.Count reseñas)</p>
+    <ul class="list-group mb-3">
+        @foreach (var review in Model.Reviews.OrderByDescending(r => r.Date))
+        {
+            <li class="list-group-item">
+                <span class="text-warning">@(new string('★', review.Rating))</span>
+                <span class="text-secondary small ms-2">@review.Date.ToString("dd/MM/yyyy")</span>
+                <p class="mb-0">@review.Comment</p>
+            </li>
+        }
+    </ul>
+}
+
+<h2 class="h4 mt-4">Empleados</h2>
+@if (Model.Employees.Count == 0)
+{
+    <p class="text-secondary">Este restaurante todavía no tiene empleados.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>DNI</th>
+                <th>Edad</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in Model.Employees)
+            {
+                <tr>
+                    <td>@employee.FirstName @employee.LastName</td>
+                    <td>@employee.Dni</td>
+                    <td>@employee.Age</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+<a class="btn btn-secondary" asp-action="Index">Volver al listado</a>
