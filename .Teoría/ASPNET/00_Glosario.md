@@ -1,0 +1,22 @@
+# Glosario
+
+- **Controlador** (*Controller*): Clase que recibe la petición del navegador
+- **Modelo** (*Model*): Clase de C# que describe los datos de la aplicación
+- **Vista** (*View*): Archivo `.cshtml` que genera el HTML de la página
+- **Ruta** (*Route*): Regla que decide qué controlador y qué acción atienden una dirección
+- **Acción** (*Action*): Método público de un controlador
+- **Layout**: Plantilla común que rodea a todas las páginas
+- **Entity Framework Core** (EF Core): Librería que traduce nuestras clases a tablas
+- **SQLite**: Base de datos que guarda todo en un único archivo
+- **Migración**: Archivo que describe un cambio en la base de datos
+- **DbContext**: Clase que conecta la aplicación con la base de datos
+- **Autorización**: Comprobación de que un usuario puede hacer una acción
+- **Enumeración** (*enum*): Tipo con una lista fija de valores
+- **Clave foránea**: Propiedad que guarda el `Id` de otra fila
+- **DbSet**: Propiedad del DbContext que representa una tabla
+- **Identity**: Sistema de ASP.NET para usuarios, contraseñas y roles
+- **Include**: Orden que carga también una tabla relacionada
+- **ViewModel**: Clase creada para los datos de una sola vista
+- **Razor**: Sintaxis que mezcla HTML con código C# en las vistas
+- **Tag Helper**: Atributo como `asp-action` que crea enlaces y formularios
+- **Rol**: Grupo de permisos, como `Admin`
