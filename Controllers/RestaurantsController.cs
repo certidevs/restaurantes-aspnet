@@ -11,20 +11,20 @@ public class RestaurantsController : Controller
 {
 
     // context permite acceder a la tabla Restaurants
-    private readonly ApplicationDbContext baseDeDatos; 
+    private readonly ApplicationDbContext context;
 
-   // método constructor para importar la base de datos
-    public RestaurantsController(ApplicationDbContext baseDeDatos)
+    // método constructor para importar la base de datos
+    public RestaurantsController(ApplicationDbContext context)
     {
-        this.baseDeDatos = baseDeDatos;
+        this.context = context;
     }
 
-   // métodos de comportamiento
+    // métodos de comportamiento
 
-   // listar restaurantes con filtros opcionales
+    // listar restaurantes con filtros opcionales
     public IActionResult Index(string? search, FoodType? foodType, double? maxPrice)
     {
-        var query = baseDeDatos.Restaurants.AsQueryable();
+        var query = context.Restaurants.AsQueryable();
 
         if (!string.IsNullOrWhiteSpace(search))
         {
@@ -52,7 +52,7 @@ public class RestaurantsController : Controller
     // detalle de un restaurante
     public IActionResult Details(int id)
     {
-        var restaurant = baseDeDatos.Restaurants
+        var restaurant = context.Restaurants
         .Include(r => r.Employees)
         .Include(r => r.Dishes)
         .Include(r => r.Reviews)
@@ -65,6 +65,23 @@ public class RestaurantsController : Controller
         }
 
         return View(restaurant);
+    }
+
+    [HttpGet]
+    public IActionResult Create()
+    {
+        var restaurant = new Restaurant { Active = true };
+        return View("Form", restaurant);
+    }
+
+    [HttpPost]
+    public IActionResult Save(Restaurant restaurant)
+    {
+        context.Restaurants.Add(restaurant);
+        context.SaveChanges();
+
+        TempData["Message"] = "Restaurante guardado correctamente.";
+        return RedirectToAction("Details", new { id = restaurant.Id });
     }
 
 }
