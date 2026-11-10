@@ -1,4 +1,4 @@
-﻿namespace RestaurantesAspNet.Models;
+namespace RestaurantesAspNet.Models;
 
 public class Review
 {

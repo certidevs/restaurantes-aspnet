@@ -1,4 +1,4 @@
-﻿namespace RestaurantesAspNet.Models;
+namespace RestaurantesAspNet.Models;
 
 public class Restaurant
 {
@@ -13,4 +13,6 @@ public class Restaurant
     public List<Employee> Employees { get; set; } = new();
     public List<Dish> Dishes { get; set; } = new();
     public List<Review> Reviews { get; set; } = new();
+
+
 }

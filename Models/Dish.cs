@@ -1,4 +1,4 @@
-﻿namespace RestaurantesAspNet.Models;
+namespace RestaurantesAspNet.Models;
 
 public class Dish
 {
@@ -7,7 +7,6 @@ public class Dish
     public string? Description { get; set; }
     public double Price { get; set; }
     public DishType DishType { get; set; }
-
     public int RestaurantId { get; set; }
     public Restaurant? Restaurant { get; set; }
 }
