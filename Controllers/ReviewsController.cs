@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RestaurantesAspNet.Data;
 using RestaurantesAspNet.Models;
@@ -23,6 +24,7 @@ public class ReviewsController : Controller
         return View(reviews);
     }
 
+    [Authorize]
     [HttpGet]
     public IActionResult Create(int restaurantId)
     {
@@ -37,6 +39,7 @@ public class ReviewsController : Controller
         return View(review);
     }
 
+    [Authorize]
     [HttpPost]
     public IActionResult Save(Review review)
     {
