@@ -57,6 +57,7 @@ public class RestaurantsController : Controller
         .Include(r => r.Employees)
         .Include(r => r.Dishes)
         .Include(r => r.Reviews)
+        .ThenInclude( review => review.User)
         .FirstOrDefault(r => r.Id == id);
 
         // si no existe el restaurante que buscamos

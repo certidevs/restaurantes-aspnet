@@ -230,6 +230,7 @@ namespace RestaurantesAspNet.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
+                        .HasMaxLength(500)
                         .HasColumnType("TEXT");
 
                     b.Property<int>("DishType")
@@ -237,6 +238,7 @@ namespace RestaurantesAspNet.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
                     b.Property<double>("Price")
@@ -299,6 +301,7 @@ namespace RestaurantesAspNet.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("NumberEmployees")
@@ -320,6 +323,7 @@ namespace RestaurantesAspNet.Data.Migrations
 
                     b.Property<string>("Comment")
                         .IsRequired()
+                        .HasMaxLength(1000)
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Date")
@@ -331,9 +335,14 @@ namespace RestaurantesAspNet.Data.Migrations
                     b.Property<int>("RestaurantId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.HasIndex("RestaurantId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Reviews");
                 });
@@ -419,7 +428,13 @@ namespace RestaurantesAspNet.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("RestaurantesAspNet.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
                     b.Navigation("Restaurant");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("RestaurantesAspNet.Models.Restaurant", b =>
