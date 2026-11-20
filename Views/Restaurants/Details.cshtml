@@ -18,8 +18,7 @@
                     <button class="btn btn-warning" type="submit">Desactivar</button>
                 </form>
             }
-            <form asp-action="Delete" asp-route-id="@Model.Id" method="post"
-                  onsubmit="return confirm('¿Seguro que quieres borrar este restaurante? Se borrarán también sus platos, empleados y reseñas.');">
+            <form asp-action="Delete" asp-route-id="@Model.Id" method="post" onsubmit="return confirm('¿Seguro que quieres borrar este restaurante? Se borrarán también sus platos, empleados y reseñas.');">
                 <button class="btn btn-danger" type="submit">Borrar</button>
             </form>
         </div>
@@ -28,6 +27,14 @@
 
 
 <dl class="row">
+    @if (User.Identity?.IsAuthenticated == true && Model.Active)
+    {
+        <form asp-controller="Orders" asp-action="Create" method="post" class="mb-3">
+            <input type="hidden" name="restaurantId" value="@Model.Id" />
+            <button class="btn btn-success" type="submit">Hacer un pedido</button>
+        </form>
+    }
+
     <dt class="col-sm-3">Precio medio</dt>
     <dd class="col-sm-9">@Model.AveragePrice €</dd>
 
@@ -48,8 +55,7 @@
     <h2 class="h4 mb-0">Carta</h2>
     @if (User.IsInRole(RoleNames.Admin))
     {
-        <a class="btn btn-sm btn-success" asp-controller="Dishes" asp-action="Create"
-           asp-route-restaurantId="@Model.Id">Añadir plato</a>
+        <a class="btn btn-sm btn-success" asp-controller="Dishes" asp-action="Create" asp-route-restaurantId="@Model.Id">Añadir plato</a>
     }
 </div>
 
@@ -82,8 +88,7 @@ else
 
 <div class="d-flex justify-content-between align-items-center mt-4 mb-2">
     <h2 class="h4 mb-0">Reseñas</h2>
-    <a class="btn btn-sm btn-success" asp-controller="Reviews" asp-action="Create"
-       asp-route-restaurantId="@Model.Id">Escribir reseña</a>
+    <a class="btn btn-sm btn-success" asp-controller="Reviews" asp-action="Create" asp-route-restaurantId="@Model.Id">Escribir reseña</a>
 </div>
 
 @if (Model.Reviews.Count == 0)
@@ -101,7 +106,8 @@ else
                     <div class="d-flex justify-content-between align-items-start">
                         <div>
                             <span class="text-warning">@(new string('★', review.Rating))</span>
-                            <span class="text-secondary small ms-2">@(review.User?.DisplayName ?? review.User?.UserName ?? "Anónimo") · @review.Date.ToString("dd/MM/yyyy")</span>
+                            <span class="text-secondary small ms-2">@(review.User?.DisplayName ?? review.User?.UserName ??
+                                        "Anónimo") · @review.Date.ToString("dd/MM/yyyy")</span>
                             </div>
                             @if (currentUserId != null && (review.UserId == currentUserId || User.IsInRole(RoleNames.Admin)))
                             {
