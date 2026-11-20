@@ -24,6 +24,10 @@ public sealed class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<Dish> Dishes => Set<Dish>();
     // tabla reseñas
     public DbSet<Review> Reviews => Set<Review>();
+    // tabla pedidos
+    public DbSet<Order> Orders => Set<Order>();
+    // tabla líneas del pedido
+    public DbSet<OrderLine> OrderLines => Set<OrderLine>();
 
     /// <summary>Configura las columnas añadidas a la tabla de usuarios de Identity.</summary>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
